@@ -1,14 +1,37 @@
-name: Read Rust File
+# name: Read Rust File
+# on: [push]
+# jobs:
+#   read-file:
+#     runs-on: ubuntu-latest
+#     steps:
+#     - name: Checkout code
+#       uses: actions/checkout@v2
+#     - name: Display Rust file contents
+#       run: cat src/my_rust_code.rs
 
-on: [push]
+name: Rust Build
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  read-file:
+  build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Display Rust file contents
-      run: cat src/my_rust_code.rs
+    - name: Install Rust
+      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+
+    - name: Set up Rust environment
+      run: source $HOME/.cargo/env
+
+    - name: Build Rust code
+      run: rustc src/my_rust_code.rs
+
+    - name: Run Rust code
+      run: ./my_rust_code
