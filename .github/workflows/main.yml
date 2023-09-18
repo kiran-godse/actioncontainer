@@ -1,37 +1,15 @@
-# name: Read Rust File
-# on: [push]
-# jobs:
-#   read-file:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-#     - name: Display Rust file contents
-#       run: cat src/my_rust_code.rs
-
-name: Rust Build
-
-on:
-  push:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  build:
+  hello_world_job:
     runs-on: ubuntu-latest
-
+    name: A job to say hello
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Install Rust
-      run: curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-
-    - name: Set up Rust environment
-      run: source $HOME/.cargo/env
-
-    - name: Build Rust code
-      run: rustc src/my_rust_code.rs
-
-    - name: Run Rust code
-      run: ./my_rust_code
+      - name: Hello world action step
+        id: hello
+        uses: actions/hello-world-docker-action@v2
+        with:
+          who-to-greet: 'Mona the Octocat'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time was ${{ steps.hello.outputs.time }}"
