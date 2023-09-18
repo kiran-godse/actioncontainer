@@ -1,15 +1,19 @@
-on: [push]
+name: Docker Action Example
+
+on:
+  push:
+    branches:
+      - main  # Adjust the branch name as needed
 
 jobs:
-  hello_world_job:
+  build:
     runs-on: ubuntu-latest
-    name: A job to say hello
+
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: actions/hello-world-docker-action@v2
-        with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker
+        run: |
+          docker build -t my-docker-image .
+          docker run -v $PWD/hello-world-docker-action/src:/mnt my-docker-image

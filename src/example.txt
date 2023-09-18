@@ -1,0 +1,15 @@
+Docker is a platform for developing, shipping, and running applications in containers. Containers are lightweight, portable, and self-sufficient environments that can contain everything needed to run an application, including the code, runtime, libraries, and system tools.
+
+Here are some key concepts to understand when working with Docker:
+
+Container: A container is an isolated environment that encapsulates an application and its dependencies. It allows you to run applications consistently across different environments, such as development, testing, and production, without worrying about the underlying infrastructure.
+
+Docker Image: A Docker image is a read-only template that defines the environment and configuration for a container. Images are used to create containers. They can be versioned and shared in container registries like Docker Hub.
+
+Dockerfile: A Dockerfile is a text file that contains instructions for building a Docker image. It specifies the base image, software packages, configurations, and code needed for the application.
+
+Docker Engine: Docker Engine is the core component of Docker that manages containers. It includes a server, a REST API, and a command-line interface. Docker Engine can run on various operating systems, including Linux, Windows, and macOS.
+
+Docker Compose: Docker Compose is a tool for defining and running multi-container Docker applications. It allows you to describe the services, networks, and volumes in a docker-compose.yml file and start them with a single command.
+
+Container Orchestration: Docker can be used in conjunction with container orchestration platforms like Kubernetes and Docker Swarm. These tools help manage and scale containers in production environments.
